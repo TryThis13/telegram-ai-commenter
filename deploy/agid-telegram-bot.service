@@ -1,0 +1,15 @@
+[Unit]
+Description=A-Gid Telegram AI Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/agid-telegram-bot
+ExecStart=/opt/agid-telegram-bot/.venv/bin/python /opt/agid-telegram-bot/telegram_ai_commenter/main.py --config /opt/agid-telegram-bot/telegram_ai_commenter/config.json
+Restart=always
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

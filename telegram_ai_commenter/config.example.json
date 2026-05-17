@@ -1,0 +1,76 @@
+{
+  "accounts": [
+    {
+      "name": "account_1",
+      "api_id_env": "TG_API_ID_ACCOUNT_1",
+      "api_hash_env": "TG_API_HASH_ACCOUNT_1",
+      "session": "sessions/account_1",
+      "enabled": true
+    }
+  ],
+  "safety": {
+    "dry_run": true,
+    "min_delay_per_account_seconds": 180,
+    "max_actions_per_account_per_hour": 12
+  },
+  "commenter": {
+    "enabled": true,
+    "source_channels": [
+      "@permitted_channel"
+    ],
+    "max_comment_length": 240,
+    "language": "same_as_post",
+    "style": "natural, short, relevant, friendly, no links, no hashtags",
+    "poll_interval_seconds": 20,
+    "poll_recent_limit": 5,
+    "process_existing_on_start": false,
+    "filters": {
+      "min_text_length": 20,
+      "skip_if_contains": [
+        "giveaway",
+        "war",
+        "tragedy"
+      ],
+      "require_any_contains": []
+    }
+  },
+  "grabber": {
+    "enabled": false,
+    "dedupe_enabled": true,
+    "dedupe_similarity_threshold": 0.35,
+    "dedupe_window": 500,
+    "ad_filter_enabled": true,
+    "block_external_links": true,
+    "block_phone_numbers": true,
+    "block_external_accounts": true,
+    "allowed_domains": [],
+    "allowed_accounts": [
+      "@owned_target_channel"
+    ],
+    "add_hashtags": true,
+    "hashtag_count": 3,
+    "footer_channel": "@Apsny_Gid",
+    "rules": [
+      {
+        "name": "example_repost_rule",
+        "source": "@owned_source_channel",
+        "target": "@owned_target_channel",
+        "enabled": true,
+        "rewrite_with_ai": true,
+        "add_source_link": false,
+        "copy_media": true,
+        "filters": {
+          "min_text_length": 20,
+          "skip_if_contains": [
+            "private",
+            "do not repost"
+          ],
+          "require_any_contains": []
+        }
+      }
+    ]
+  },
+  "openai": {
+    "model": "gpt-5.2"
+  }
+}
